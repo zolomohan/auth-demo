@@ -19,7 +19,7 @@ server.set('view engine', 'ejs');
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(
 	require('express-session')({
-		secret: 'Rusty is the best and cutest dog in the world',
+		secret: process.env.SESSION || 'L1ECdHvXKTxjWfCzobDr5jRgr3VTCalXqmtPpsRo',
 		resave: false,
 		saveUninitialized: false
 	})
@@ -60,4 +60,5 @@ server.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-server.listen(3000, () => console.log('Auth Server has started'));
+const port = process.env.PORT || 3000;
+server.listen(port, () => console.log('Auth Server has started'));
