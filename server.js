@@ -10,7 +10,8 @@ const server = express();
 const isLoggedIn = require('./middleware/isLoggedIn')
 
 mongoose.connect('mongodb://localhost/auth_demo', {
-	useNewUrlParser: true
+	useNewUrlParser: true,
+	useUnifiedTopology: true
 });
 
 server.set('view engine', 'ejs');
