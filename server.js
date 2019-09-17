@@ -1,4 +1,5 @@
 const express = require('express'),
+			session = require('express-session'),
 			mongoose = require('mongoose'),
 			passport = require('passport'),
 			localStrategy = require('passport-local'),
@@ -7,7 +8,7 @@ const express = require('express'),
 
 const server = express();
 
-const isLoggedIn = require('./middleware/isLoggedIn')
+const isLoggedIn = require('./middleware/isLoggedIn');
 
 mongoose.connect('mongodb://localhost/auth_demo', {
 	useNewUrlParser: true,
@@ -18,7 +19,7 @@ server.set('view engine', 'ejs');
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(
-	require('express-session')({
+	session({
 		secret: process.env.SESSION || 'L1ECdHvXKTxjWfCzobDr5jRgr3VTCalXqmtPpsRo',
 		resave: false,
 		saveUninitialized: false
