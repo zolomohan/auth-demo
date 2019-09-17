@@ -7,6 +7,8 @@ const express = require('express'),
 
 const server = express();
 
+const isLoggedIn = require('./middleware/isLoggedIn')
+
 mongoose.connect('mongodb://localhost/auth_demo', {
 	useNewUrlParser: true
 });
@@ -56,10 +58,5 @@ server.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/');
 });
-
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) return next();
-	return res.redirect('/login');
-}
 
 server.listen(3000, () => console.log('Auth Server has started'));
